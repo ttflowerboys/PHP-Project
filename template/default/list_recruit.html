@@ -1,0 +1,31 @@
+{xiao:template header.html}
+{xiao:template catNav.html}
+
+    <div class="block100"></div>
+    <div class="w">
+        <div class="breadCrumb"><a href="{xiao:$site_url}">首页</a> > {xiao:function.position($catid, ' &gt;&nbsp;&nbsp;')}</div>
+        
+       <h2 class="comTitle comTitleJobs"><strong>JOBS</strong></h2>
+        <h3 class="secondTitle">{xiao:$cats[9][catname]}</h3>
+        <table class="JobsTable">
+            <thead>
+                <tr>
+                    <th width="230">招聘职位</th>
+                    <th width="156">工作经验</th>
+                    <th width="168">所属部门</th>
+                    <th width="180">招聘人数</th>
+                    <th width="152">发布时间</th>
+                    <th>查看详情</th>
+                </tr>
+            </thead>
+            <tbody>
+                 {xiao:list catid=$catid page=$page xiaocms=1}
+                <tr><td>{xiao:$xiao['title']}</td><td>{xiao:$xiao['experience']}</td><td>{xiao:$xiao['department']}</td><td>{xiao:$xiao['number']}</td><td>{xiao:function.date("Y/m/d", $xiao['time'])}</td><td><a href="{xiao:$xiao['url']}">查看</a></td></tr>{/xiao:list}
+            </tbody>
+        </table>
+        {xiao:$pagelist}
+    </div>
+<div style="height: 220px"></div>
+{xiao:template footer.html}
+
+

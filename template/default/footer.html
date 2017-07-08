@@ -1,0 +1,42 @@
+    <div class="footer">
+        <div class="w clearfix">
+            {xiao:nav num=6}
+                <dl class="footerDl">
+                    <dt><a href="{xiao:$xiao['url']}">{xiao:$xiao['catname']}</a></dt>
+                    {xiao:if  $xiao['child']}
+                        {xiao:nav parentid=$xiao[catid] }
+                        <dd><a href="{xiao:$xiao['url']}">{xiao:$xiao['catname']}</a></dd>
+                        {/xiao:nav}
+                    {/xiao:if}
+                </dl>
+            {/xiao:nav}
+            <dl class="footerQr"><img src="/static/images/qr.png" alt=""></dl>
+        </div>
+        <div class="copyright"><div class="w">Copyright Reserved © 2017 XXXX 版权所有 <a href="">京IPC备10032270号-1</a> </div></div>
+    </div>
+
+
+    <!-- floatBar -->
+    <div id="floatBar" class="floatBar">
+        <a class="section">
+            <i class="icon icon-phone"></i>
+            <span>公司电话</span>
+            <div class="hint">
+                <p>010-82157866</p>
+                <p>010-62730046</p>
+            </div>
+        </a>
+        <a class="section">
+            <i class="icon icon-time"></i>
+            <span>营业时间</span>
+            <div class="hint">
+                <p>周一至周五13:00-20:00 </p>
+                <p>周六日 9:00-6:00</p>
+            </div>
+        </a>
+        <div id="scrollToTop" class="section scrollToTop">
+            <i class="icon icon-gotop"></i>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,10 @@
+{xiao:template catBanner.html}
+<div class="subColumn">
+    <ul class="w" data-fn="checkColNum">
+        {xiao:if $topcat}
+            {xiao:nav parentid=$topcat[catid]}
+                <li class="{xiao:if $current}cur{/xiao:if}"><a href="{xiao:$xiao['url']}">{xiao:$xiao['catname']}</a></li>
+            {/xiao:nav}
+        {/xiao:if}
+    </ul>
+</div> <!-- subColumn end -->

@@ -1,0 +1,78 @@
+{xiao:template header.html}
+{xiao:template catBanner.html}
+    <div class="subColumn">
+        <ul class="w col-3">
+            <li class="cur"><a href="#Member">{xiao:$cats[26][catname]}</a></li>
+            <li><a href="#Audio">{xiao:$cats[27][catname]}</a></li>
+            <li><a href="#Cooperation">合作结构</a></li>
+        </ul>
+    </div> <!-- subColumn end -->
+    
+    <div id="Member" class="block100"></div>
+    <div class="Member w">
+        <h2 class="comTitle inverse comTitleMember"><strong>Member</strong></h2>
+        <h3 class="secondTitle">会员中心</h3>
+        {xiao:if $member['username']}
+                <div class="user-info border-shadow clearfix">
+                    <div class="user-img"><img src="/static/images/touxiang.png" width="60" height="60"></div>
+                    <div class="user-text">
+                        <h5><span>{xiao:$member['username']}</span>，欢迎进入您的会员中心！<a href="{xiao:function.url('login/out')}">安全退出</a></h5>
+                        <p class="account_cxt">
+                            <span class="account_num">手机号码：1*******7</span>
+                        </p>
+                    </div>
+                </div>
+        {xiao:else}
+        <div class="tac"><a class="button-login" href="/member/{xiao:function.url('login')}">会员登录</a><a class="button-rigester" href="/member/{xiao:function.url('register')}">注册会员</a></div>
+        {/xiao:if}
+        <div class="block100"></div>
+    </div>
+
+    <div id="Audio" class="Audio">
+        <div class="w">
+            <h2 class="comTitle comTitleAudio"><strong>AUDIO DOWNLOAD</strong></h2>
+            <h3 class="secondTitle inverse">音频下载</h3>
+            <div class="J_Audio J_slide">
+                <div class="js-sCont">
+                    <ul class="AudioList">
+                        {xiao:list catid=27 order=number num=9 xiaocms=1}
+                        <li>
+                            <img src="{xiao:function.image($xiao[thumb])}" alt="{xiao:$xiao['title']}">
+                            <div class="title">{xiao:$xiao['title']}</div>
+                            <div class="meta">  
+                                <a {xiao:if $xiao['level'] == 0 || $xiao['level'] == $member['level']}href="{xiao:$xiao['download']}"{xiao:else} href="javascript:;" class="J_tips"{/xiao:if}><i class="icon-download"></i></a>
+                            </div>
+                        </li>
+                        {/xiao:list}
+                        <!-- <div class="meta"><a href=""><span class="icon-video"><span class="path1"></span><span class="path2"></span></span></a><a href=""><i class="icon-download"></i></a></div> -->
+                    </ul>
+                </div>
+                <div class="js-sDot inverse"><ul></ul></div>
+            </div>
+        </div>
+    </div><!-- Audio end -->
+
+    <div id="Cooperation" class="Cooperation">
+        <div class="w">
+            <h2 class="comTitle inverse comTitleCooperation"><strong>COOPERATION</strong></h2>
+            <h3 class="secondTitle">合作结构</h3>
+            <div class="CooperationBox">                    
+                {xiao:list table=diy_cooperation   num=10}
+                    <a href="{xiao:$xiao['domain']}"><img src="{xiao:$xiao['logo']}" alt="{xiao:$xiao['companyName']}"></a>
+                {/xiao:list}
+            </div>
+        </div>
+    </div> <!-- Cooperation end -->
+{xiao:template footer.html}
+<link rel="stylesheet" href="https://cdn.bootcss.com/layer/3.0.1/skin/default/layer.css" id="layuicss-skinlayercss">
+<script src="https://cdn.bootcss.com/layer/3.0.1/layer.min.js"></script>
+<script>
+    $(function(){
+        $('.J_Audio').slide({effect:"left",autoPlay:true,vis:3,scroll:3})
+        if ($('.J_tips')[0]) {
+            $('.J_tips').on('click',function(){
+                layer.msg('您暂无权限下载，请联系管理员！');
+            })
+        }
+    })
+</script>

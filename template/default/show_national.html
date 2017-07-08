@@ -1,0 +1,38 @@
+{xiao:template header.html}
+{xiao:php $topcat = get_top_cat($catid);}
+
+<div class="CenterDetails">
+    <div class="placeholderImg" style="height: 300px;">
+        <div class="inner">{xiao:if $cats[$catid][image]}<img src="{xiao:$cats[$catid][image]}" alt="{xiao:$cats[$catid][catname]}">{xiao:else}<img src="{xiao:$topcat[image]}" alt="{xiao:$cats[$catid][catname]}">{/xiao:if}</div>
+    </div>
+    <div class="DetailsInfo">
+        <h1 class="title">{xiao:$catname}-{xiao:$title}</h1>
+        <p class="desc">{xiao:$description}</p>
+        <div class="meta">
+            <span class="tel"><i class="icon-tel"></i>{xiao:$tel}</span>
+            <span class="addr"><i class="icon-address"></i>{xiao:$address}</span>
+        </div>
+    </div>
+    <h2 class="comTitle comTitlePictures"><strong>Pictures</strong></h2>
+    <h3 class="secondTitle inverse">环境图片</h3>
+
+    <div class="J_Pictures J_slide w">
+        <div class="js-sCont">
+            <div class="picturesList">                
+                {xiao:loop $pic[fileurl] $key=>$t}
+                <li><a href=""><img src="{xiao:$pic[fileurl][$key]}" alt="{xiao:$pic[filename][$key]}"></a></li>
+                {/xiao:loop}
+            </div>
+        </div>
+        <div class="js-sDot"><ul></ul></div>
+    </div>
+</div><!-- CenterDetails end -->
+
+
+<script>
+    $(function(){
+        $(".J_Pictures .js-sCont li").each(function(i){ $(".J_Pictures .js-sCont li").slice(i*8,i*8+8).wrapAll("<ul></ul>");});
+        $(".J_Pictures").slide({mainCell:".js-sCont .picturesList",autoPage:true,effect:"leftLoop"});
+    })
+</script>
+{xiao:template footer.html}

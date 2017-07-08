@@ -1,0 +1,31 @@
+{xiao:template header.html}
+{xiao:template catNav.html}
+    
+
+
+    <div id="Teachers" class="Teachers">
+        <div class="w">
+            <h2 class="comTitle comTitleTeachers"><strong>Teachers</strong></h2>
+            <h3 class="secondTitle">{xiao:$cats[18][catname]}</h3>
+            <div class="J_teachers J_slide">
+                <div class="js-sCont">
+                    <div class="teacherList">
+                    {xiao:list catid=$catid page=$page}
+                        <li class="teacherItems"><a href="{xiao:$xiao['url']}">
+                                <span class="pic"><img src="{xiao:function.image($xiao[thumb])}" alt="{xiao:$xiao['title']}"></span>
+                                <span class="name">{xiao:$xiao['title']}</span>
+                                <p class="desc">{xiao:function.strcut($xiao[description],120)}</p>
+                            </a>
+                        </li>
+                    {/xiao:list}
+                    </div> <!-- teacherList end -->
+                </div>
+                
+            </div>
+        </div>
+    </div> <!-- Teachers end -->
+
+    
+
+{xiao:template footer.html}
+

@@ -1,0 +1,21 @@
+{xiao:template header.html}
+{xiao:template catNav.html}
+
+    <div class="w">
+        <div class="DistributionPage">
+            <div class="DistributionTitle"><a href="{xiao:$xiao['url']}">{xiao:$xiao['catname']}</a></div>
+            <ul class="DistributionList clearfix">
+            {xiao:list catid=$catid page=$page}
+                <li>
+                    <div class="pic"><a href="{xiao:$xiao['url']}"><img src="{xiao:function.image($xiao[thumb])}" alt="{xiao:$xiao['title']}"></a></div>
+                    <div class="titlt"><a href="{xiao:$xiao['url']}">{xiao:$xiao['title']}</a></div>
+                </li>
+            {/xiao:list}
+            </ul>
+        </div>
+        {xiao:$pagelist}
+    </div>
+
+{xiao:template footer.html}
+
+

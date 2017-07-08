@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>{xiao:$site_title}</title>
+    <meta name="keywords" content="{xiao:$site_keywords}" />
+    <meta name="description" content="{xiao:$site_description}" />
+    <link rel="stylesheet" href="/static/css/style.css">
+    <script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="/static/plugin/slide/jquery.SuperSlide.js"></script>
+    <script src="/static/js/common.js"></script>
+</head>
+<body>
+    <div class="header">
+        <div class="w clearfix">
+            <h1 class="logo"><a href="{xiao:$site_url}" title="{xiao:$site_name}">{xiao:$site_title}</a></h1>
+            <ul class="nav fr">                                         
+                <li class="navItems {xiao:if $index}cur{/xiao:if}"><a class="sub" href="{xiao:$site_url}">首页</a></li>
+                {xiao:nav num=6}
+                    <li class="navItems {xiao:if $current}cur{/xiao:if}">
+                        <a class="sub" href="{xiao:$xiao['url']}">{xiao:$xiao['catname']}</a>
+                    </li>
+                {/xiao:nav}
+            </ul>
+        </div>
+    </div> <!-- header end -->

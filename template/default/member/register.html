@@ -1,0 +1,96 @@
+{xiao:template header.html}
+<div class="block100"></div>
+<div class="w border">
+	<div class="RegisterHd"><span>会员注册</span></div>
+	<div class="p35">
+		<form class="J_validForm" method="post" action="" name="myform" id="myform">
+			<table class="TableForm" width="100%">
+				<tbody>
+					<tr>
+						<td class="tar" width="132"><b class="t-f33">*</b> 会员账号：</td>
+						<td width="250"><input type="text" class="input-text" name="data[username]" datatype="s3-24" errormsg="3-24个字符内，可以是汉字、a-z、0-9以及下划线！" nullmsg="请输入用户名！"></td>
+						<td><div class="Validform_checktip">3-24个字符内，可以是汉字、a-z、0-9以及下划线</div></td>
+					</tr>
+					
+					<tr>
+						<td class="tar"><b class="t-f33">*</b> 会员密码：</td>
+						<td><input type="password" class="input-text" name="data[password]" datatype="*6-32" nullmsg="请填写密码" plugin="passwordStrength"><div class="passwordStrength">安全性： <span>弱</span><span>中</span><span class="last">强</span></div></td>
+						<td><div class="Validform_checktip">密码长度6-32，字母区分大小写</div></td>
+					</tr>
+					<tr>
+						<td class="tar"><b class="t-f33">*</b> 确认密码：</td>
+						<td><input type="password" class="input-text" name="data[password2]" recheck="data[password]" datatype="*" nullmsg="重新输入一次密码" errormsg="您两次输入的账号密码不一致！"></td>
+						<td><div class="Validform_checktip">重新输入一次密码</div></td>
+					</tr>
+					<tr>
+						<td class="tar"><b class="t-f33">*</b> 您的邮箱：</td>
+						<td><input type="text" class="input-text" name="data[email]" datatype="e"></td>
+						<td><div class="Validform_checktip">输入邮箱</div></td>
+					</tr>
+
+					{xiao:if $config['member_regcode']}
+					<tr>
+						<td class="tar"><b class="t-f33">*</b> 验证码：</td>
+						<td>
+							<input type="text" name="code" class="input-text ipt-verify">
+							<img id="code" src="../index.php?c=api&a=checkcode&width=100&height=30" alt="" width="60" height="20" style="vertical-align: middle;" title="看不清楚？换一张" onclick="document.getElementById('code').src='../index.php?c=api&a=checkcode&width=100&height=30&'+Math.random();">
+						</td>
+						<td><div class="Validform_checktip">验证码不能为空</div></td>
+					</tr>
+					{/xiao:if}
+
+					<tr class="last">
+						<td></td>
+						<td><input type="submit" class="btnStyle1" value="确认提交" name="submit"></td>
+						<td></td>
+					</tr>
+				</tbody>
+			</table>
+		</form>
+	</div>
+</div>
+
+<div class="block100"></div>
+
+<link rel="stylesheet" href="/static/plugin/validform/css/validForm.css">
+<script src="/static/plugin/validform/Validform_v5.3.2_min.js"></script>
+<script src="/static/plugin/validform/passwordStrength-min.js"></script>
+<link rel="stylesheet" href="https://cdn.bootcss.com/layer/3.0.1/skin/default/layer.css" id="layuicss-skinlayercss">
+<script src="https://cdn.bootcss.com/layer/3.0.1/layer.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	var storeCate = $(".storeCateItmes");
+	storeCate.on("click","dt",function(){
+		var _this = $(this);
+		_this.addClass("cur").siblings("dt").removeClass("cur");
+		_this.next("dd").slideDown(150);
+		_this.siblings("dt").next("dd").slideUp(150);
+	});
+	$(".J_validForm").Validform({
+		datatype:{
+			"z2-4" : /^[\u4E00-\u9FA5\uf900-\ufa2d]{2,4}$/
+		},
+		usePlugin:{
+			passwordstrength:{
+				minLen:6,
+				maxLen:32
+			}
+		},
+		tiptype:4,
+		ajaxPost:true,
+		callback:function(data){
+			if(data.status==1){
+				layer.alert(data.info, {icon: 6}, function (index) {
+			      	layer.close(index);
+			      	location.href = data.url;
+			    });
+			}else{
+				layer.msg(data.info)
+			}
+		}
+
+	});
+})
+</script>
+
+{xiao:template footer.html}

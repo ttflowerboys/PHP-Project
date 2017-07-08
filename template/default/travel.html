@@ -1,0 +1,53 @@
+{xiao:template header.html}
+{xiao:template catBanner.html}
+
+    <div class="subColumn">
+        <ul class="w" data-fn="checkColNum">
+            <li class="cur"><a href="#travel">{xiao:$cats[14][catname]}</a></li>
+            <li><a href="#line">{xiao:$cats[15][catname]}</a></li>
+            <li><a href="#get">{xiao:$cats[16][catname]}</a></li>
+            <li><a href="#way">{xiao:$cats[17][catname]}</a></li>
+        </ul>
+    </div> <!-- subColumn end -->
+    
+    <div id="travel" class="Idea w">
+        <h2 class="comTitle inverse comTitleIdea"><strong>travel</strong></h2>
+        <h3 class="secondTitle">{xiao:$cats[14][catname]}</h3>
+        <!--<div class="IdeaBox"><div class="text"></div></div>-->
+        <div class="clearfix">
+        {xiao:block 12}
+</div>
+        
+    </div>
+
+    <div id="line" class="Advantage">
+        <div class="w">
+            <h2 class="comTitle comTitleAdvantage"><strong>line</strong></h2>
+            <h3 class="secondTitle inverse">{xiao:$cats[15][catname]}</h3>
+            {xiao:block 15}
+        </div>
+    </div><!-- Audio end -->
+
+    <div id="get" class="Course">
+        <div class="w">
+            <h2 class="comTitle inverse comTitleCourse"><strong>Course</strong></h2>
+            <h3 class="secondTitle">{xiao:$cats[16][catname]}</h3>
+            {xiao:block 16}
+        </div>
+    </div> <!-- Course end -->
+
+    <div id="way" class="Course">
+        <div class="w">
+            <h2 class="comTitle inverse comTitleCourse"><strong>Course</strong></h2>
+            <h3 class="secondTitle">{xiao:$cats[17][catname]}</h3>
+            {xiao:block 17}
+        </div>
+    </div> <!-- Course end -->
+
+{xiao:template footer.html}
+
+<script>
+    $(function(){
+        $('.J_Course').slide({effect:"left",titCell:".js-sDot li",autoPage:false})
+    })
+</script>

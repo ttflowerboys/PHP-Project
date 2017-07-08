@@ -1,0 +1,22 @@
+{xiao:template header.html}
+{xiao:template catNav.html}
+
+    <div class="block100"></div>
+    <div class="w">
+        <div class="breadCrumb"><a href="{xiao:$site_url}">首页</a> > {xiao:function.position($catid, ' &gt;&nbsp;&nbsp;')}</div>
+        <div style="height: 32px"></div>
+        <ul class="newsList">
+            {xiao:list catid=$catid page=$page}
+                <li>
+                    <div class="pic"><img src="{xiao:function.image($xiao[thumb])}" alt="{xiao:$xiao['title']}"></div>
+                    <div class="time"><span>{xiao:function.date("\<b>d\</b\> M. Y", $xiao['time'])}</span></div>
+                    <div class="title"><a href="{xiao:$xiao['url']}">{xiao:$xiao['title']}</a></div>
+                    <div class="desc">{xiao:function.strcut($xiao[description],120)}</div>
+                </li>
+            {/xiao:list}
+        </ul>
+        {xiao:$pagelist}
+    </div>
+
+ <div class="block100"></div>
+{xiao:template footer.html}

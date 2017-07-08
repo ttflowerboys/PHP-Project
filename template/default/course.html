@@ -1,0 +1,95 @@
+{xiao:template header.html}
+{xiao:template catBanner.html}
+
+    <div class="subColumn">
+        <ul class="w" data-fn="checkColNum">
+            <li class="cur"><a href="{xiao:$cats[11][url]}">{xiao:$cats[11][catname]}</a></li>
+            <li><a href="#Advantage">{xiao:$cats[12][catname]}</a></li>
+            <li><a href="#Course">{xiao:$cats[13][catname]}</a></li>
+        </ul>
+    </div> <!-- subColumn end -->
+
+    <div id="IDEA" class="Idea w">
+        <h2 class="comTitle inverse comTitleIdea"><strong>IDEA</strong></h2>
+        <h3 class="secondTitle">{xiao:$cats[11][catname]}</h3>
+        <div class="clearfix">
+            {xiao:block 6}
+        </div>
+    </div>
+
+    <div id="Advantage" class="Advantage">
+        <div class="w">
+            <h2 class="comTitle comTitleAdvantage"><strong>Advantage</strong></h2>
+            <h3 class="secondTitle inverse">{xiao:$cats[12][catname]}</h3>
+<div class="clearfix">{xiao:block 11}</div>
+            <!--<ul class="advList clearfix">
+                <li>
+                    <img src="/static/images/adv_1.png" alt="">
+                    <strong>高端早教</strong>
+                    <span>独树一帜的品牌理念与教育哲学</span>
+                </li>
+                <li>
+                    <img src="/static/images/adv_2.png" alt="">
+                    <strong>空间环境</strong>
+                    <span>每家中心都是城市中的森林城堡</span>
+                </li>
+                <li>
+                    <img src="/static/images/adv_3.png" alt="">
+                    <strong>安全环保</strong>
+                    <span>为宝宝优化设计的教具，环保安全</span>
+                </li>
+                <li>
+                    <img src="/static/images/adv_4.png" alt="">
+                    <strong>全球领先课程</strong>
+                    <span>全球领先的早教英语课程体系</span>
+                </li>
+            </ul>-->
+        </div>
+    </div><!-- Audio end -->
+
+    <div id="Course" class="Course">
+        <div class="w">
+            <h2 class="comTitle inverse comTitleCourse"><strong>Course</strong></h2>
+            <h3 class="secondTitle">{xiao:$cats[13][catname]}</h3>
+            <div class="J_Course CourseSlide">
+                <div class="js-sDot">
+                    <ul class="TabList">
+                        {xiao:list catid=13 num=5 order=id_asc}<li>{xiao:$xiao['title']}</li>{/xiao:list}
+                    </ul>
+                </div>
+                <div class="js-sCont">
+                    <ul>
+                        {xiao:list catid=13 xiaocms=1 num=5 order=id_asc}
+                        <li>
+                            <div class="CourseItems">
+                                <a href="{xiao:$xiao['url']}"><img src="{xiao:function.image($xiao[thumb])}" alt="{xiao:$xiao['title']}"></a>
+                                <div class="txt">
+                                    <dl>
+                                        <dt>课程介绍</dt>
+                                        <dd>{xiao:function.strcut($xiao[description],120)}</dd>
+                                    </dl>
+                                    <dl>
+                                        <dt>目标年龄</dt>
+                                        <dd>{xiao:$xiao['age']}</dd>
+                                    </dl>
+                                    <dl>
+                                        <dt>目标：</dt>
+                                        <dd>{xiao:$xiao['target']}</dd>
+                                    </dl>
+                                </div>
+                            </div>
+                        </li>
+                        {/xiao:list}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div> <!-- Course end -->
+
+{xiao:template footer.html}
+
+<script>
+    $(function(){
+        $('.J_Course').slide({effect:"left",titCell:".js-sDot li",autoPage:false})
+    })
+</script>

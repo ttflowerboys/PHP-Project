@@ -1,0 +1,91 @@
+{xiao:template header.html}
+{xiao:template catBanner.html}
+
+    <div class="subColumn">
+        <ul class="w" data-fn="checkColNum">
+            <li class="cur"><a href="#Teachers">{xiao:$cats[18][catname]}</a></li>
+            <li><a href="#Students">{xiao:$cats[19][catname]}</a></li>
+            <li><a href="#Environment">{xiao:$cats[20][catname]}</a></li>
+            <li><a href="#Distribution">{xiao:$cats[21][catname]}</a></li>
+        </ul>
+    </div> <!-- subColumn end -->
+
+
+    <div id="Teachers" class="Teachers">
+        <div class="w">
+            <h2 class="comTitle comTitleTeachers"><strong>Teachers</strong></h2>
+            <h3 class="secondTitle">{xiao:$cats[18][catname]}</h3>
+            <div class="J_teachers J_slide">
+                <div class="js-sCont">
+                    <div class="teacherList">
+                    {xiao:list catid=18 num=12}
+                        <li class="teacherItems"><a href="{xiao:$xiao['url']}">
+                                <span class="pic"><img src="{xiao:function.image($xiao[thumb])}" alt="{xiao:$xiao['title']}"></span>
+                                <span class="name">{xiao:$xiao['title']}</span>
+                                <p class="desc">{xiao:function.strcut($xiao[description],120)}</p>
+                            </a>
+                        </li>
+                    {/xiao:list}
+                    </div> <!-- teacherList end -->
+                </div>
+                <div class="js-sDot"><ul></ul></div>
+            </div>
+        </div>
+    </div> <!-- Teachers end -->
+
+    <div id="Students" class="Students">
+        <div class="w">
+            <h2 class="comTitle inverse comTitleStudents"><strong>STAR STUDENTS</strong></h2>
+            <h3 class="secondTitle">{xiao:$cats[19][catname]}</h3>
+            <div class="J_students J_slide">
+                <div class="js-sCont">
+                    <ul class="studentsList">
+                        {xiao:list catid=19 num=8}
+                            <li><a href="{xiao:$xiao['url']}"><div class="pic"><img src="{xiao:function.image($xiao[thumb])}" alt=""></div><div class="info"><span class="name">{xiao:$xiao['title']}</span><div class="desc">{xiao:function.strcut($xiao[description],120)}</div></div></a></li>
+                        {/xiao:list}
+                        
+                    </ul>
+                </div>
+                <div class="js-sDot"><ul></ul></div>
+                <a href="javascript:;" class="slideBtn js-prev"></a>
+                <a href="javascript:;" class="slideBtn js-next"></a>
+            </div>
+        </div>
+    </div> <!-- Students end -->
+
+    <div id="Environment" class="Environment">
+        <div class="w">
+            <h2 class="comTitle inverse comTitleEnvironment"><strong>Environment</strong></h2>
+            <h3 class="secondTitle">{xiao:$cats[20][catname]}</h3>
+            <div class="clearfix info">
+                {xiao:block 10}
+            </div>
+        </div>
+    </div><!-- Environment end -->
+
+    <div id="Distribution" class="Distribution">
+        <div class="w">
+            <h2 class="comTitle comTitleDistribution"><strong>Distribution</strong></h2>
+            <h3 class="secondTitle inverse">{xiao:$cats[21][catname]}</h3>
+            <div class="clearfix">
+                <div class="Map fl"><img src="/static/images/map.png" alt=""></div>
+                <dl class="MapList fr">
+                    <dt>请选择您的城市</dt>
+                    {xiao:nav parentid=21 }
+                        <dd><a href="{xiao:$xiao['url']}">{xiao:$xiao['catname']}</a><dd>
+                    {/xiao:nav}                    
+                    <div class="clear"></div>
+                </dl>
+            </div>
+        </div>
+    </div> <!-- Distribution end -->
+
+{xiao:template footer.html}
+
+<script>
+    $(function(){
+        $(".J_teachers .js-sCont li").each(function(i){ $(".J_teachers .js-sCont li").slice(i*4,i*4+4).wrapAll("<ul></ul>");});
+        $(".J_teachers").slide({mainCell:".js-sCont .teacherList",autoPage:true,effect:"leftLoop"});
+        $('.J_students').slide({effect:"left",autoPlay:true,vis:4,scroll:4})
+    })
+</script>

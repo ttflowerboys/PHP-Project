@@ -1,0 +1,8 @@
+{xiao:php $topcat = get_top_cat($catid);}
+<div class="banner">
+    <div class="js-sCont">
+        <ul>
+            <li>{xiao:if $cats[$catid][image]}<img src="{xiao:$cats[$catid][image]}" alt="{xiao:$cats[$catid][catname]}">{xiao:else}<img src="{xiao:$topcat[image]}" alt="{xiao:$cats[$catid][catname]}">{/xiao:if}</li>
+        </ul>
+    </div>
+</div> <!-- banner end -->

@@ -1,0 +1,15 @@
+{xiao:template header.html}
+{xiao:template catNav.html}
+
+    <div class="Post w">
+        <div class="breadCrumb"><a href="{xiao:$site_url}">首页</a> > {xiao:function.position($catid, ' &gt;&nbsp;&nbsp;')} > {xiao:$title}</div>
+        <div class="block52"></div>
+        <h1 class="PostTitle">{xiao:$title}</h1>
+        <div class="PostMain">
+           
+            {xiao:$content}
+        </div>
+    </div>
+
+ <div class="block100"></div>
+{xiao:template footer.html}

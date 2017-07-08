@@ -1,0 +1,85 @@
+{xiao:template header.html}
+{xiao:template catBanner.html}
+
+    <div class="subColumn">
+        <ul class="w col-4">
+            <li class="cur"><a href="#CO">{xiao:$cats[7][catname]}</a></li>
+            <li><a href="#team">{xiao:$cats[8][catname]}</a></li>
+            <li><a href="#Jobs">{xiao:$cats[9][catname]}</a></li>
+            <li><a href="#Contact">{xiao:$cats[10][catname]}</a></li>
+        </ul>
+    </div> <!-- subColumn end -->
+
+    <div id="CO" class="CO_INTRODUCTION w">
+        <h2 class="comTitle inverse comTitleCO"><strong>CO. INTRODUCTION</strong></h2>
+        <h3 class="secondTitle">{xiao:$cats[7][catname]}</h3>
+        <div class="clearfix">
+            <div class="CO_Left"><img src="{xiao:block 13}" alt=""></div>
+            <div class="CO_Info">{xiao:block 4}</div>
+        </div>
+    </div>
+    <div id="team" class="Environment">
+        <div class="w">
+            <h2 class="comTitle inverse comTitleTeam"><strong>TEAM INTRODUCTION</strong></h2>
+            <h3 class="secondTitle">{xiao:$cats[8][catname]}</h3>
+            <div class="TeamBox">{xiao:block 5}</div>
+            <div class="TeamPeople">
+                <img src="static/images/teamPeople.png" alt="">
+            </div>
+        </div>
+    </div><!-- Team end -->
+    <div id="Jobs" class="Jobs">
+        <div class="w">
+            <h2 class="comTitle comTitleJobs"><strong>JOBS</strong></h2>
+            <h3 class="secondTitle">{xiao:$cats[9][catname]}</h3>
+            <table class="JobsTable">
+                <thead>
+                    <tr>
+                        <th width="230">招聘职位</th>
+                        <th width="156">工作经验</th>
+                        <th width="168">所属部门</th>
+                        <th width="180">招聘人数</th>
+                        <th width="152">发布时间</th>
+                        <th>查看详情</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {xiao:list catid=9 order=number num=5 xiaocms=1}
+                    <tr><td>{xiao:$xiao['title']}</td><td>{xiao:$xiao['experience']}</td><td>{xiao:$xiao['department']}</td><td>{xiao:$xiao['number']}</td><td>{xiao:function.date("Y/m/d", $xiao['time'])}</td><td><a href="{xiao:$xiao['url']}">查看</a></td></tr>{/xiao:list}
+                </tbody>
+            </table>
+        </div>
+    </div> <!-- Jobs end -->
+    <div id="Contact" class="Contact">
+        <div class="w">
+            <h2 class="comTitle inverse comTitleContact"><strong>Contact</strong></h2>
+            <h3 class="secondTitle">{xiao:$cats[10][catname]}</h3>
+            <div class="clearfix">
+                <div class="ContactL">
+                    <dl class="contactDl">
+                        <dt><img src="/static/images/tel.png" alt="">校区电话</dt>
+                        <dd>010-82157866</dd>
+                    </dl>
+                    <dl class="contactDl">
+                        <dt><img src="/static/images/email.png" alt="">联系邮箱</dt>
+                        <dd>happykids2011@sina.com</dd>
+                    </dl>
+                    <dl class="contactDl">
+                        <dt><img src="/static/images/address.png" alt="">校区地址</dt>
+                        <dd>北京市海淀区上地东路35号颐泉汇1号楼106</dd>
+                    </dl>
+                </div>
+                <div class="ContactR"><img src="{xiao:block 14}" alt=""></div>
+            </div>
+        </div>
+    </div><!-- Contact end -->
+
+{xiao:template footer.html}
+
+<script>
+    $(function(){
+        $(".J_teachers .js-sCont li").each(function(i){ $(".J_teachers .js-sCont li").slice(i*4,i*4+4).wrapAll("<ul></ul>");});
+        $(".J_teachers").slide({mainCell:".js-sCont .teacherList",autoPage:true,effect:"leftLoop"});
+        $('.J_students').slide({effect:"left",autoPlay:true,vis:4,scroll:4})
+    })
+</script>

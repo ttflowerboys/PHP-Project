@@ -1,0 +1,60 @@
+{xiao:template header.html}
+<div class="block100"></div>
+
+<div class="login-box-my">
+	<h2>登录</h2>
+	<p>（请使用 <a href="{xiao:$site_url}" target="_blank">{xiao:$site_name}账号</a> 进行登录）</p>
+	<div class="cr_top_my"> 
+		<form class="J_validForm" autocomplete="off">
+			<input type="hidden" value="{xiao:$gobackurl}" name="data[gobackurl]">
+			<div class="ct_input">
+				<span class="ct_img_yhm">&nbsp;</span>
+				<input type="text" name="data[username]" class="input_text" required placeholder="请输入用户名！" autocomplete="off">
+			</div>
+			<div class="ct_input">
+				<span class="ct_img_mm">&nbsp;</span>
+				<input type="password" name="data[password]" placeholder="请填写密码" class="input_text" autocomplete="off">
+			</div>
+			<input class="btn_login btn_login_my" name="submit" value="登&nbsp;&nbsp;录" type="submit">
+			<div class="ct_bottom">
+				<a class="a_register" href="{xiao:function.url('register')}">会员注册</a><a class="a_forget" href="javascript:;">联系我们</a>
+			</div>
+		</form>
+	</div>
+</div>
+<div class="block100"></div>
+
+
+
+{xiao:template footer.html}
+
+<link rel="stylesheet" href="/static/plugin/validform/css/validForm.css">
+<script src="/static/plugin/validform/Validform_v5.3.2_min.js"></script>
+<script src="/static/plugin/validform/passwordStrength-min.js"></script>
+<link rel="stylesheet" href="https://cdn.bootcss.com/layer/3.0.1/skin/default/layer.css" id="layuicss-skinlayercss">
+<script src="https://cdn.bootcss.com/layer/3.0.1/layer.min.js"></script>
+<script type="text/javascript">
+$(function(){
+
+	$(".J_validForm").Validform({
+		tiptype:4,
+		ajaxPost:true,
+		callback:function(data){
+			if(data.status==1){
+				layer.alert(data.info, {icon: 6}, function (index) {
+			      	layer.close(index);
+			      	location.href = data.url;
+			    });
+			}else{
+				layer.msg(data.info)
+			}
+		}
+
+	});
+
+
+/*	$.ajax(function(){
+
+	})*/
+})
+</script>

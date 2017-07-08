@@ -1,0 +1,152 @@
+{xiao:template header.html}
+    <div class="banner J_slide">
+        <div class="js-sCont">
+            <ul>
+                <li><a href="{xiao:block 7}" target="_blank"><img src="{xiao:block 1}" alt=""></a></li>
+                <li><a href="{xiao:block 8}" target="_blank"><img src="{xiao:block 2}" alt=""></a></li>
+                <li><a href="{xiao:block 9}" target="_blank"><img src="{xiao:block 3}" alt=""></a></li>
+            </ul>
+        </div>
+        <div class="js-sDot"><ul></ul></div>
+    </div> <!-- banner end -->
+    <div class="reserve">
+        <div class="w">
+            <form id="reserveForm" action="{xiao:function.url('index/form', array('modelid'=>10))}" method="post">
+                {xiao:$fields}
+                <a href="javascript:;" class="ipt-btn J_submit" onClick="tijiao();">预约试听提交</a>
+            </form>
+        </div>
+    </div> <!-- reserve end -->
+    
+
+    <div class="indexNews">
+        <div class="w">
+            <h2 class="comTitle comTitleNews"><strong>news新闻</strong></h2>
+            <div class="indexNewsTab">
+                <div class="js-sDot">
+                    <ul class="indexNewsHd">
+                        <li>{xiao:$cats[23][catname]}</li>
+                        <li class="cur">{xiao:$cats[22][catname]}</li>
+                        <li>{xiao:$cats[24][catname]}</li>
+
+                    </ul>
+                </div>
+                <div class="indexNewsBd js-sCont">
+                    <ul>
+                        <li class="indexNewsBdItems">
+                            {xiao:list catid=23 order=time num=1}
+                                <a href="{xiao:$xiao['url']}" class="NewsItemsFocus"><span class="pic"><img src="{xiao:function.image($xiao[thumb])}" alt="{xiao:$xiao['title']}"></span><div class="info"><span class="time">{xiao:function.date("d/m/Y", $xiao['time'])}</span><span class="title">{xiao:$xiao['title']}</span></div></a>
+                            {/xiao:list}
+                            {xiao:list catid=23 order=time num=1,4}
+                            <a href="{xiao:$xiao['url']}" class="NewsItems"><span class="pic"><img src="{xiao:function.image($xiao[thumb])}" alt="{xiao:$xiao['title']}"></span><div class="info"><span class="time">{xiao:function.date("d/m/Y", $xiao['time'])}</span><span class="title">{xiao:$xiao['title']}</span></div></a>
+                            {/xiao:list}
+                        </li>
+
+                        <li class="indexNewsBdItems">
+                            {xiao:list catid=22 order=time num=1}
+                                <a href="{xiao:$xiao['url']}" class="NewsItemsFocus"><span class="pic"><img src="{xiao:function.image($xiao[thumb])}" alt="{xiao:$xiao['title']}"></span><div class="info"><span class="time">{xiao:function.date("d/m/Y", $xiao['time'])}</span><span class="title">{xiao:$xiao['title']}</span></div></a>
+                            {/xiao:list}
+                            {xiao:list catid=22 order=time num=1,4 }
+                            <a href="{xiao:$xiao['url']}" class="NewsItems"><span class="pic"><img src="{xiao:function.image($xiao[thumb])}" alt="{xiao:$xiao['title']}"></span><div class="info"><span class="time">{xiao:function.date("d/m/Y", $xiao['time'])}</span><span class="title">{xiao:$xiao['title']}</span></div></a>
+                            {/xiao:list}
+                        </li>
+                        <li class="indexNewsBdItems">
+                            {xiao:list catid=24 order=time num=1}
+                                <a href="{xiao:$xiao['url']}" class="NewsItemsFocus"><span class="pic"><img src="{xiao:function.image($xiao[thumb])}" alt="{xiao:$xiao['title']}"></span><div class="info"><span class="time">{xiao:function.date("d/m/Y", $xiao['time'])}</span><span class="title">{xiao:$xiao['title']}</span></div></a>
+                            {/xiao:list}
+                            {xiao:list catid=24 order=time num=1,4}
+                            <a href="{xiao:$xiao['url']}" class="NewsItems"><span class="pic"><img src="{xiao:function.image($xiao[thumb])}" alt="{xiao:$xiao['title']}"></span><div class="info"><span class="time">{xiao:function.date("d/m/Y", $xiao['time'])}</span><span class="title">{xiao:$xiao['title']}</span></div></a>
+                            {/xiao:list}
+                        </li>
+                    </ul>
+                </div>
+                <a href="javascript:;" class="slideBtn js-prev"></a>
+                <a href="javascript:;" class="slideBtn js-next"></a>
+            </div>
+        </div>
+    </div> <!-- indexNews end -->
+
+    <div class="indexCorse">
+        <div class="w">
+            <h2 class="comTitle inverse comTitleCourse"><strong>{xiao:$cats[13][catname]}</strong></h2>
+            <h3 class="secondTitle">课程推荐</h3>
+            <ul class="CouseList clearfix">
+                {xiao:list catid=13 xiaocms=1 num=4 order=id_asc $key++}
+                <li class="nLi-{xiao:$key+1}">
+                    <h5 class="title" data-fn="formatTitle">{xiao:$xiao['title']}</h5>
+                    <p class="desc">{xiao:function.strcut($xiao[description],120)}<span class="age">目标年龄：<b class="t-red">{xiao:$xiao['age']}</b></span></p>
+                    <a href="{xiao:$xiao['url']}" class="more">查看详情</a>
+                </li>
+                {/xiao:list}
+            </ul>
+        </div>
+    </div> <!-- indexCorse end -->
+{xiao:template footer.html}
+
+<!-- javascript for index page-->
+    <link rel="stylesheet" href="static/plugin/dropkick/dropkick.css">
+    <script src="static/plugin/dropkick/jquery.dropkick.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/layer/3.0.1/skin/default/layer.css">
+    <script src="https://cdn.bootcss.com/layer/3.0.1/layer.min.js"></script>
+    <script>
+        function tijiao(){
+            var uname = $("#V_user").val();  
+            if(uname.length<1){
+                layer.tips('姓名不能为空',$("#V_user"), { tips: [1, '#FF3100'], time:3000 });
+                return false;
+            }
+            if(!/.*[\u4e00-\u9fa5]+.*$/.test(uname)){
+                layer.tips('姓名还是填中文的吧',$("#V_user"), { tips: [1, '#FF3100'], time:3000 });
+                return false;
+            }
+            var mobile = parseInt($("#V_phone").val());
+            if(mobile<13000000000||mobile>18999999999||isNaN(mobile)){
+                layer.tips('请输入正确的手机号',$("#V_phone"), { tips: [1, '#FF3100'], time:3000 });
+                return false;
+            }
+
+            var action = $("#reserveForm").attr('action');
+            $.ajax({
+                type: 'POST',
+                url: action,
+                timeout: 20000,
+                dataType: "json",
+                beforeSend: function(){
+                    $('.J_submit').addClass('loading');
+                    $('.J_submit').text('正在提交...');
+                },
+                complete: function(){
+                    $('.J_submit').removeClass('loading');
+                    $('.J_submit').text('预约试听提交');
+                },
+                data: $("#reserveForm").serialize(),
+                success: function(data){
+                    if(data.status==1){
+                        layer.msg(data.info);
+                        $("#V_user").value("");
+                        $("#V_phone").value("");
+                    }else{
+                        layer.msg(data.info);
+                    }
+                    
+                },
+                error:function(data){
+                    layer.msg("网络延迟，请您一定要再试一试");
+                }
+            });
+        }
+
+        $(function(){
+            $('.indexNewsTab').slide({effect:"leftLoop",titCell:".js-sDot li",mainCell:".js-sCont ul",autoPage:!1,trigger:"click"})
+            
+        })
+        ;(function(){
+            $('[data-fn=formatTitle]').each(function(){
+                var $this = $(this);
+                $this.html(formatTitle($this.text()))
+            })
+
+        })()
+
+    </script>
+<!-- javascript for index page end-->

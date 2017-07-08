@@ -1,0 +1,28 @@
+{xiao:template header.html}
+<div class="Distribution">
+    <div class="w">
+        <div class="clearfix">
+            <div class="Map fl"><img src="static/images/map.png" alt=""></div>
+            <dl class="MapList fr">
+                <dt>请选择您的城市</dt>
+                {xiao:nav parentid=21}
+                    <dd class="{xiao:if $current}cur{/xiao:if}"><a href="{xiao:$xiao['url']}">{xiao:$xiao['catname']}</a></dd>
+                {/xiao:nav}
+                <div class="clear"></div>
+            </dl>
+        </div>
+    </div>
+</div> <!-- Distribution end -->
+
+<div class="DistributionPage w">
+        <div class="DistributionTitle"><a>{xiao:$xiao['catname']}</a></div>
+        <ul class="DistributionList clearfix">
+        {xiao:list catid=$catid page=$page}
+            <li>
+                <div class="pic"><img src="{xiao:function.image($xiao[thumb])}" alt="{xiao:$xiao['title']}"></div>
+                <div class="titlt"><a href="{xiao:$xiao['url']}">{xiao:$xiao['title']}</a></div>
+            </li>
+        {/xiao:list}
+        </ul>
+    </div>
+{xiao:template footer.html}
