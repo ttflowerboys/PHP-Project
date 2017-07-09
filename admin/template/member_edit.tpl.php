@@ -15,13 +15,17 @@ function ajaxemail() {
 		<table width="100%" class="table_form ">
 		<tbody>
 		<tr>
-			<th width="120">修改会员：</th>
+			<th width="120">姓名：</th>
 			<td><?php echo $data['username']; ?>&nbsp;&nbsp;</td>
 		</tr>
 		<tr>
+			<th width="120">手机号：</th>
+			<td><?php echo $data['phone']; ?>&nbsp;&nbsp;</td>
+		</tr>
+		<!-- <tr>
 			<th>所属模型：</th>
 			<td><?php echo $member_model['modelname']; ?></td>
-		</tr>
+		</tr> -->
 		<tr>
 			<th>班级类型：</th>
 			<td>
@@ -30,7 +34,7 @@ function ajaxemail() {
 					<?php if (is_array($class_arr)) foreach ($class_arr  as $key=>$t) { ?>
 						<option <?php if (isset($data['memberclass']) && $data['memberclass']==$key) { ?>selected<?php } ?> value="<?php echo $key; ?>"><?php echo $t; ?></option>
 					<?php } ?>
-				</select>		
+				</select>
 			</td>
 		</tr>
 		<tr>

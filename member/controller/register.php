@@ -18,10 +18,14 @@ class register extends Member {
 			if ($this->site_config['member_regcode'] && !$this->checkCode($this->post('code'))) $this->tp_error('验证码不正确');
 	        if (empty($data['username'])) $this->tp_error('请填写会员名');
 			if (!$this->is_username($data['username'])) $this->tp_error('会员名称不符合规则');
-    		if (empty($data['password'])) $this->tp_error('密码不能为空1');
+
+			if (empty($data['phone'])) $this->tp_error('手机号不能为空');
+
+    		if (empty($data['password'])) $this->tp_error('密码不能为空');
     		if (strlen($data['password'])<6) $this->tp_error('密码不能少于6位数');
     		if ($data['password'] != $data['password2']) $this->tp_error('两次输入密码不一致');
 	    	if (!is_email($data['email'])) $this->tp_error('邮箱格式不正确');
+	    	if ($this->db->setTableName('member')->getOne('phone=?', $data['phone'], 'id')) $this->tp_error('手机号已经存在!');
 	    	if ($this->db->setTableName('member')->getOne('email=?', $data['email'], 'id')) $this->tp_error('邮箱已经存在，请重新选择邮箱');
 	    	if ($this->db->setTableName('member')->getOne('username=?', $data['username'], 'id')) $this->tp_error('该会员名称已经存在，请重新选择');
 
@@ -33,7 +37,7 @@ class register extends Member {
 	    	$data['password'] = md5(md5($data['password']));
 	    	$data['id'] = $this->db->setTableName('member')->insert($data,true);
 	    	if ($data['id']) {
-	    	    $this->db->setTableName($this->member_model[$data['modelid']]['tablename'])->insert($data);
+	    	    $this->db->setTableName($this->member_model[$data['modelid']]['tablename'])->insert($data);	    	    
 	    	}else {
 	         	$this->tp_error('注册失败');
 	    	}
