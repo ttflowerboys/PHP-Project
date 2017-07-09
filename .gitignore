@@ -3,10 +3,8 @@ App/Runtime/
 ~*
 
 data/tplcache/
-data/config/
 data/cache/
 data/models/
-data/bakup/
 
 
 
