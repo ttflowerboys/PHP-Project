@@ -7,7 +7,7 @@
 	color:#333;
 	font-size:12px;
 	padding-left: 20px;
-	background: url(../images/v-tips.gif) left center no-repeat;
+	background: none;
 }
 .Validform_right{
 	color:#71b83d;
@@ -46,6 +46,7 @@
 	text-align:center; 
 	background-color:#d0d0d0; 
 	border-right:1px solid #fff;
+	display: none;
 }
 .passwordStrength .last{
 	border-right:none;
@@ -53,4 +54,13 @@
 .passwordStrength .bgStrength{
 	color:#fff;
 	background-color:#71b83d;
+}
+.passwordStrength{position: absolute;
+    left: 195px;
+    top: 21px;
+    width: 45px;
+    height: 16px;
+    overflow: hidden;}
+.passwordStrength .bgStrength:last-child {
+	display: block;
 }

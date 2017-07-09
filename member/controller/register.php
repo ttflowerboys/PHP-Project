@@ -16,19 +16,29 @@ class register extends Member {
 		    $data = $this->post('data');
 	        unset($data['id']);
 			if ($this->site_config['member_regcode'] && !$this->checkCode($this->post('code'))) $this->tp_error('验证码不正确');
-	        if (empty($data['username'])) $this->tp_error('请填写会员名');
-			if (!$this->is_username($data['username'])) $this->tp_error('会员名称不符合规则');
+			$username = trim($data['username']);
+	        if (empty($username)) $this->tp_error('请填写姓名');
+			if (!$this->is_realname($username)) $this->tp_error('姓名还是填中文的吧');
 
-			if (empty($data['phone'])) $this->tp_error('手机号不能为空');
+			$phone = trim($data['phone']);
+			if (empty($phone)) $this->tp_error('手机号不能为空');
+			if(!$this->is_phone($phone)) $this->tp_error('手机号格式不正确');
 
-    		if (empty($data['password'])) $this->tp_error('密码不能为空');
-    		if (strlen($data['password'])<6) $this->tp_error('密码不能少于6位数');
-    		if ($data['password'] != $data['password2']) $this->tp_error('两次输入密码不一致');
-	    	if (!is_email($data['email'])) $this->tp_error('邮箱格式不正确');
-	    	if ($this->db->setTableName('member')->getOne('phone=?', $data['phone'], 'id')) $this->tp_error('手机号已经存在!');
-	    	if ($this->db->setTableName('member')->getOne('email=?', $data['email'], 'id')) $this->tp_error('邮箱已经存在，请重新选择邮箱');
-	    	if ($this->db->setTableName('member')->getOne('username=?', $data['username'], 'id')) $this->tp_error('该会员名称已经存在，请重新选择');
+			$password = trim($data['password']);
+    		if (empty($password)) $this->tp_error('密码不能为空');
+    		if (strlen($password)<6) $this->tp_error('密码不能少于6位数');
+    		if ($password != trim($data['password2'])) $this->tp_error('两次输入密码不一致');
 
+    		$email = trim($data['email']);
+	    	if (!empty($email) && !is_email($email)) $this->tp_error('邮箱格式不正确');
+
+	    	if ($this->db->setTableName('member')->getOne('phone=?', $phone, 'id')) $this->tp_error('手机号已经存在!');
+	    	#if ($this->db->setTableName('member')->getOne('email=?', $data['email'], 'id')) $this->tp_error('邮箱已经存在，请重新选择邮箱');
+	    	#if ($this->db->setTableName('member')->getOne('username=?', $username, 'id')) $this->tp_error('该姓名已经存在，请重新选择');
+
+	    	$data['phone']    = $phone;
+	    	$data['username'] = $username;
+	    	$data['email']    = $email;
 	    	$data['regdate']  = time(); 
 	    	$data['regip']    = $this->get_user_ip();
 	    	$data['status']	  = $this->site_config['member_status']  ? 0 : 1;
@@ -69,6 +79,26 @@ class register extends Member {
 			return false;
 		}
 		return true;
+    }
+
+    /**
+     * 中文姓名
+     */
+    private function is_realname($realname){
+    	if(!preg_match("/^[\x{4e00}-\x{9fa5}]+$/u", $realname)){
+    		return false;
+    	}
+    	return true;
+    }
+
+    /**
+     * 手机号
+     */
+    private function is_phone($phone){
+    	if($phone<13000000000||$phone>18999999999){
+    		return false;
+    	}
+    	return true;
     }
 	
 }
