@@ -12,9 +12,9 @@
         <div class="user-info border-shadow clearfix">
             <div class="user-img"><img src="/static/images/touxiang.png" width="60" height="60"></div>
             <div class="user-text">
-                <h5><span>{xiao:$member['username']}</span>，欢迎进入您的会员中心！<a href="{xiao:function.url('login/out')}">安全退出</a></h5>
+                <h5><span>{xiao:$member['username']}</span>，欢迎进入您的会员中心！<a class="logout" href="{xiao:function.url('login/out')}">安全退出</a></h5>
                 <p class="account_cxt">
-                    <span class="account_num">手机号码：1*******7</span>
+                    <span class="account_num">手机号码：<strong style="color: #F44336;font-size: 16px;font-weight: bold;">{xiao:$member['phone']}</strong></span>
                 </p>
             </div>
         </div>

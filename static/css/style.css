@@ -431,9 +431,9 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, 
 
 .user-info {height: 60px;padding: 43px 40px;background: #fff;}
 .user-info .user-img {float: left;display: inline;width: 60px;margin-right: 20px}
-.user-info .user-text {float: left;display: inline}
 .user-info .user-text h5 {font-weight: 400;font-size: 18px;color: #333;line-height: 26px}
 .user-info .user-text h5 span {color: #25b887}
+.user-info .logout{float: right;float: right;font-size: 14px;}
 .account_cxt{line-height: 22px;margin-top: 13px;color: #666;font-size: 14px;}
 
 .userTipsList a{

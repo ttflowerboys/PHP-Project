@@ -14,11 +14,13 @@ class login extends Member {
 	    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		    $data   = $this->post('data');
 			if ($this->site_config['member_logincode'] && !$this->checkCode($this->post('code'))) $this->tp_error('验证码不正确');
-			if (empty($data['username']) || empty($data['password'])) $this->tp_error('用户名或密码不能为空');
-			$member = $this->db->setTableName('member')->getOne('username=?', $data['username']);
+			$phone = trim($data['phone']);
+			$password = trim($data['password']);
+			if (empty($phone) || empty($password)) $this->tp_error('手机号或密码不能为空');
+			$member = $this->db->setTableName('member')->getOne('phone=?', $phone);
 			$gobackurl= $data['gobackurl'] ? urldecode($data['gobackurl']) : url('index');
 			if (empty($member)) $this->tp_error('会员名不存在');
-			if ($member['password'] != md5(md5($data['password']))) $this->tp_error('密码错误');
+			if ($member['password'] != md5(md5($password))) $this->tp_error('密码错误');
 			cookie::set('member_id', $member['id']);
 			cookie::set('member_code', substr(md5($this->site_config['rand_code'] . $member['id']), 5, 20));
 			$this->tp_success('登录成功', $gobackurl);
