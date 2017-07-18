@@ -47,13 +47,14 @@ class register extends Member {
 	    	$data['password'] = md5(md5($data['password']));
 	    	$data['id'] = $this->db->setTableName('member')->insert($data,true);
 	    	if ($data['id']) {
-	    	    $this->db->setTableName($this->member_model[$data['modelid']]['tablename'])->insert($data);	    	    
+	    	    //$this->db->setTableName($this->member_model[$data['modelid']]['tablename'])->insert($data);
+	    		cookie::set('member_id', $data['id']);
+				  cookie::set('member_code', substr(md5($this->site_config['rand_code'] . $data['id']), 5, 20));
+				  $this->tp_success('恭喜，注册成功！', '/index.php?catid=6');	
 	    	}else {
 	         	$this->tp_error('注册失败');
 	    	}
-			cookie::set('member_id', $data['id']);
-			cookie::set('member_code', substr(md5($this->site_config['rand_code'] . $data['id']), 5, 20));
-			$this->tp_success('注册成功', url('index'));
+			
 		}
 		$modelid	= (int)$this->get('modelid') ? (int)$this->get('modelid') : (int)$this->site_config['member_modelid'];
 		$this->view->assign(array(
