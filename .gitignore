@@ -2,12 +2,6 @@ App/Runtime/
 *.docx
 ~*
 
-data/tplcache/
-data/cache/
-data/models/
-
-
-
 # Dependency directory
 # Commenting this out is preferred by some people, see
 # https://npmjs.org/doc/faq.html#Should-I-check-my-node_modules-folder-into-git
